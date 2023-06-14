@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { User } = require('../models/index.js');
+const { User, Invitee } = require('../models/index.js');
 
 const signupController = async (req, res) => {
   try {
@@ -11,11 +11,11 @@ const signupController = async (req, res) => {
     // Save the user details and hashed password to the database
     const user = await User.create({ inviteeId, password: hashedPassword, name, email, phone });
 
-    // Retrieve the user details from the database using the 'id' field
-    const userDetails = await User.findOne({ where: { id: user.id } });
+    // Save the invitee details to the database
+    await Invitee.create({ inviteeId, name, email, phone });
 
-    // Send the user details in the response
-    res.status(200).json(userDetails);
+    // Send the invitee ID in the response
+    res.status(200).json({ inviteeId });
   } catch (error) {
     console.error('Error signing up:', error);
     res.status(500).json({ error: 'An error occurred while signing up.' });

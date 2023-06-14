@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { User } = require('../models/index.js');
+const { generateToken } = require('../utils/jwt.js');
 
 const loginController = async (req, res) => {
   try {
@@ -29,13 +30,16 @@ const loginController = async (req, res) => {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
 
-    // Send the user details in the response
+    // Generate a JWT token
+    const token = generateToken({ userId: user.id }, '1h');
+
+    // Send the user details and token in the response
     console.log('Login successful:', user);
-    res.status(200).json(user);
+    res.status(200).json({ user, token });
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'An error occurred while logging in.' });
   }
-}
+};
 
 module.exports = loginController;
