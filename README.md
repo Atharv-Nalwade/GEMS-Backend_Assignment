@@ -187,4 +187,4 @@ All private endpoints first pass through the authentication middleware, where th
 - If any error occurs during the process, it catches the error, logs it to the console, and sends a 500 Internal Server Error response with an error message.
 
 
-### Please note that the above description assumes a local development environment with the base URL "http://localhost:3000" Adjust the base URL accordingly if you are deploying the project on a different server.
+### Please note that the above description assumes a local development environment with the base URL `http://localhost:3000` Adjust the base URL accordingly if you are deploying the project on a different server.
