@@ -13,19 +13,20 @@ const signupController = async (req, res) => {
         return res.status(500).json({ error: 'An error occurred while uploading the file.' });
       }
 
-      const { inviteeId, password, name, email, phone } = req.body;
-      const profilePicture = req.file.buffer; // Access the uploaded file buffer
+      const { inviteeId, password } = req.body;
 
       // Validate the input parameters
-      if (!inviteeId || !password || !name || !email || !phone) {
+      if (!inviteeId || !password) {
         return res.status(400).json({ error: 'Missing required fields.' });
       }
 
-      // Check if the invitation exists and is valid
-      const invitation = await Invitee.findOne({ where: { inviteeId } });
-      if (!invitation) {
+      // Retrieve invitee details from the Invitee table
+      const invitee = await Invitee.findOne({ where: { inviteeId } });
+      if (!invitee) {
         return res.status(404).json({ error: 'Invitation not found or expired.' });
       }
+
+      const { name, email, phone } = invitee;
 
       // Check if a user with the same email already exists
       const existingUser = await User.findOne({ where: { email } });
@@ -37,7 +38,7 @@ const signupController = async (req, res) => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Save the user details, hashed password, and profile picture to the database
-      const user = await User.create({ inviteeId, password: hashedPassword, name, email, phone, profilePicture });
+      const user = await User.create({ inviteeId, password: hashedPassword, name, email, phone });
 
       // Send the response indicating successful sign-up
       res.status(200).json({ message: 'User account created successfully.' });

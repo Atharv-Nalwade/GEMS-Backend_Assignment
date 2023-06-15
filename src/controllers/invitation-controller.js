@@ -15,7 +15,7 @@ const invitationController = async (req, res) => {
     const inviteeId = uuidv4();
 
     // Save the invitation details to the database
-    await Invitee.create({ inviteeId, name, email, phone });
+    await Invitee.create({ inviteeId, name, email, phone,alternateEmail });
 
     // Send the response with the invitee ID
     res.status(200).json({ inviteeId });
