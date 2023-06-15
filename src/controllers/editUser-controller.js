@@ -1,5 +1,4 @@
 const { User } = require("../models/index.js");
-const { verifyToken } = require("../utils/jwt.js");
 const multer = require("multer");
 
 // Configure multer storage
@@ -21,11 +20,9 @@ const editUserController = async (req, res) => {
       console.log("Inside uploadMiddleware", req.body);
       if (err) {
         console.error("Error uploading profile picture:", err);
-        return res
-          .status(500)
-          .json({
-            error: "An error occurred while uploading the profile picture.",
-          });
+        return res.status(500).json({
+          error: "An error occurred while uploading the profile picture.",
+        });
       }
       const { name, email, phone, alternateEmail } = req.body;
 
