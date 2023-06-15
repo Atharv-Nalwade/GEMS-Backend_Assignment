@@ -20,6 +20,24 @@ JWT_SECRET=sometextwithoutquotes
 6. Inside the `src/config/config.json` file, under the `development` section, provide your MySQL database credentials: username, password, and database name.
 7. Execute `npx sequelize-cli db:migrate` to execute the database migrations and create the necessary tables.
 8. Execute `npx sequelize-cli db:seed:all` to execute the seed file and create the initial invitee entry.
+9. Then considering you are in the root directory execute `cd src` followed by `node index.js` to run teh file and teh server would be started
+
+## Packages Used
+
+The following packages are used in this project:
+
+- **bcrypt** (Version 5.1.0): A library for hashing passwords and comparing hashed passwords.
+- **body-parser** (Version 1.20.2): Middleware for parsing incoming request bodies.
+- **dotenv** (Version 16.1.4): Loads environment variables from a `.env` file into `process.env`.
+- **express** (Version 4.18.2): Fast and minimalist web framework for Node.js.
+- **jsonwebtoken** (Version 9.0.0): JSON Web Token (JWT) implementation for generating and validating tokens.
+- **multer** (Version 1.4.5-lts.1): Middleware for handling file uploads.
+- **mysql2** (Version 3.3.5): MySQL client for Node.js that supports pooling and prepared statements.
+- **sequelize** (Version 6.32.0): A promise-based ORM for Node.js that supports multiple databases.
+- **sequelize-cli** (Version 6.6.1): Command-line interface for Sequelize ORM.
+
+These packages provide various functionalities such as user authentication, data storage and retrieval, file handling, and more.
+
 
 ### Signup API
 
@@ -105,4 +123,4 @@ All private endpoints first pass through the authentication middleware, where th
 - If any error occurs during the process, it catches the error, logs it to the console, and sends a 500 Internal Server Error response with an error message.
 
 
-### Please note that the above description assumes a local development environment with the base URL http://localhost:3000. Adjust the base URL accordingly if you are deploying the project on a different server.
+### Please note that the above description assumes a local development environment with the base URL "http://localhost:3000" Adjust the base URL accordingly if you are deploying the project on a different server.
