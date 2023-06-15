@@ -13,11 +13,10 @@ git clone https://github.com/Atharv-Nalwade/GEMS-Backend_Assignment.git
 ```
 3. Run `npm init` or `npm init -y` to initialize the project.
 4. Run `npm install` to install the project dependencies.
-5. Create a `.env` file in the root directory and add the following line inside it:
+5. Create a `.env` file in the root directory and add the following line inside it, Replace `sometextwithoutquotes` with your desired secret key:
 ```
 JWT_SECRET=sometextwithoutquotes
 ```
-Replace `sometextwithoutquotes` with your desired secret key.
 6. Inside the `src/config/config.json` file, under the `development` section, provide your MySQL database credentials: username, password, and database name.
 7. Execute `npx sequelize-cli db:migrate` to execute the database migrations and create the necessary tables.
 8. Execute `npx sequelize-cli db:seed:all` to execute the seed file and create the initial invitee entry.
@@ -27,8 +26,10 @@ Replace `sometextwithoutquotes` with your desired secret key.
 - HTTP Method: POST
 - Endpoint: `http://localhost:3000/api/v1/signup`
 - Send the form-data in the request body with the following keys and values:
+```
 - `inviteeId` (text): first_user_inviteeId
 - `password` (text): john123
+```
 - Note: The password can be any value.
 - Passwords are hashed before being stored in the database.
 - The signup API checks if the invitee ID belongs to someone. The inviteeId is created in the invitation controller, and the invitation controller is a private endpoint.
