@@ -189,4 +189,28 @@ All private endpoints first pass through the authentication middleware, where th
 - If any error occurs during the process, it catches the error, logs it to the console, and sends a 500 Internal Server Error response with an error message.
 
 
+## Note:
+
+
 ### Please note that the above description assumes a local development environment with the base URL `http://localhost:3000` Adjust the base URL accordingly if you are deploying the project on a different server.
+
+
+## Future Scope
+
+Here are some suggestions to make the project better:
+
+1. **Modularization**: Consider further modularizing the controllers into services and repository folders. This can improve code organization and maintainability, especially as the functionality of the project grows.
+
+2. **Logging Libraries**: Instead of using console logs, integrate a logging library such as Winston or Bunyan. Logging libraries provide more advanced features like log levels, log formatting, and the ability to write logs to different destinations. This can help with debugging, monitoring, and troubleshooting in production environments.
+
+3. **Token Expiration**: Implement a mechanism to automatically flush expired tokens from the blacklist. Currently, the blacklist tokens are not cleared, which can lead to unnecessary storage consumption over time. You can add a scheduled task or a background job to periodically remove expired tokens from the blacklist table.
+
+4. **Performance Optimization**: Considering optimizing the performance of the application. This can include techniques like caching, database query optimization, code profiling, and using indexes appropriately. Analyze the bottlenecks and areas of improvement, and apply performance optimization techniques to enhance the overall efficiency and responsiveness of the application.
+
+5. **Error Handling and Validation**: Enhance the error handling and validation mechanisms. Implement proper error handling for database operations, API requests, and input validations. Ensuring that appropriate error responses are returned to the client with meaningful error messages. 
+
+6. **Security Measures**: Review and strengthen the security measures in the application. Consider implementing additional security features such as input sanitization, rate limiting, request validation, and etc.
+
+7. **Documentation**: Improve the documentation of the project. Document the APIs, their endpoints, input/output formats, and any specific requirements or constraints. Also, update the README file with detailed instructions for setting up the project, running it locally, and deploying it to different environments.
+
+ 
