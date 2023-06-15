@@ -106,15 +106,17 @@ Note: The actual table names in the database may be different from the model nam
 ### Signup API
 
 - HTTP Method: POST
-- Endpoint: `http://localhost:3000/api/v1/signup`
+- Endpoint:** `http://localhost:3000/api/v1/signup`
+- Description: This API is used to sign up a user.
 - Send the form-data in the request body with the following keys and values:
 ```
 - `inviteeId` (text): first_user_inviteeId
 - `password` (text): john123
 ```
-- Note: The password can be any value.
-- Passwords are hashed before being stored in the database.
-- The signup API checks if the invitee ID belongs to someone. The inviteeId is created in the invitation controller, and the invitation controller is a private endpoint.
+- Note: Any password can be given by the user. The password is hashed before storing it in the database.
+- Important: During the signup process, the user needs to provide an invitee ID. However, to create an invitee ID, a user needs to be logged in. To overcome this, the first invitee is manually inserted into the database via the seeder file. The invitee ID is created in the invitation controller, which is a private endpoint accessible only after authentication. The Signup API checks if the provided invitee ID belongs to someone.
+- Considering the task's documentation the first invitee needs to added manually in the database
+
 
 ### Login API
 
