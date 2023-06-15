@@ -38,6 +38,66 @@ The following packages are used in this project:
 
 These packages provide various functionalities such as user authentication, data storage and retrieval, file handling, and more.
 
+## Database Schema
+
+The project uses a relational database to store and manage data. The schema consists of several tables that represent different entities in the system.
+
+### User Table
+
+The `User` table stores information about registered users in the system. It has the following columns:
+
+- `id` (INTEGER): The primary key for identifying each user uniquely.
+- `inviteeId` (STRING): The ID of the invitee associated with the user.
+- `password` (STRING): The hashed password of the user.
+- `name` (STRING): The name of the user.
+- `email` (STRING): The email address of the user.
+- `phone` (STRING): The phone number of the user.
+- `alternateEmail` (STRING): An alternate email address of the user.
+- `profilePicture` (BLOB): A binary large object (BLOB) data type to store the user's profile picture.
+- `createdAt` (DATE): The timestamp representing the creation date of the user record.
+- `updatedAt` (DATE): The timestamp representing the last update date of the user record.
+
+### Invitee Table
+
+The `Invitee` table stores information about invited users. It has the following columns:
+
+- `id` (INTEGER): The primary key for identifying each invitee uniquely.
+- `inviteeId` (STRING): The ID of the invitee.
+- `name` (STRING): The name of the invitee.
+- `email` (STRING): The email address of the invitee.
+- `phone` (STRING): The phone number of the invitee.
+- `alternateEmail` (STRING): An alternate email address of the invitee.
+- `createdAt` (DATE): The timestamp representing the creation date of the invitee record.
+- `updatedAt` (DATE): The timestamp representing the last update date of the invitee record.
+
+### BlacklistToken Table
+
+The `BlacklistToken` table stores invalidated or deleted JWT tokens. It has the following columns:
+
+- `id` (INTEGER): The primary key for identifying each blacklisted token uniquely.
+- `token` (STRING): The JWT token that is blacklisted.
+- `createdAt` (DATE): The timestamp representing the creation date of the blacklisted token record.
+- `updatedAt` (DATE): The timestamp representing the last update date of the blacklisted token record.
+
+
+### Organization Table(Optional)
+
+The `Organization` table stores information about organizations. It has the following columns:
+
+- `id` (INTEGER): The primary key for identifying each organization uniquely.
+- `organizationId` (STRING): The ID of the organization.
+- `inviteeId` (STRING): The ID of the invitee associated with the organization.
+- `name` (STRING): The name of the organization.
+- `role` (STRING): The role or position of the user in the organization.
+- `validTill` (DATE): The date until which the organization's membership or validity is active.
+- `createdAt` (DATE): The timestamp representing the creation date of the organization record.
+- `updatedAt` (DATE): The timestamp representing the last update date of the organization record.
+
+These tables and their columns define the structure of the project's database schema. Data is stored and retrieved from these tables based on the application's functionality and requirements.
+
+Note: The actual table names in the database may be different from the model names specified in the code. Sequelize provides options to customize the table names, but the default behavior is to pluralize the model names to derive the table names.
+
+
 
 ### Signup API
 
