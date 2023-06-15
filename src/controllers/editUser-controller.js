@@ -1,15 +1,22 @@
 const { User } = require("../models/index.js");
 const { verifyToken } = require('../utils/jwt.js');
+const multer = require('multer');
+
+// Configure multer storage
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const editUserController = async (req, res) => {
   try {
-    const { name, email, phone, alternateEmail, profilePicture } = req.body;
+    const { name, email, phone, alternateEmail } = req.body;
 
     // Extract the user ID from the decoded token obtained from the request object
-    const userId = req.user.dataValues.id;
-    console.log(userId);
+    console.log("req.user:", req.user);
+    const userId = Number(req.user.dataValues.id); // Convert userId to a number
+    console.log("userId:", userId);
 
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(18);
+    console.log("user:", user);
 
     if (!user) {
       return res.status(404).json({ error: "User not found." });
@@ -22,7 +29,6 @@ const editUserController = async (req, res) => {
         email,
         phone,
         alternateEmail,
-        profilePicture,
       },
       {
         where: {
@@ -35,16 +41,37 @@ const editUserController = async (req, res) => {
       return res.status(404).json({ error: "User not found." });
     }
 
-    // Fetch the updated user details
-    const updatedUser = await User.findByPk(userId);
+    // Handle profile picture upload
+    upload.single('profilePicture')(req, res, async (err) => {
+      if (err) {
+        console.error("Error uploading profile picture:", err);
+        return res.status(500).json({ error: "An error occurred while uploading the profile picture." });
+      }
 
-    // Send the updated user details in the response
-    res.status(200).json({ user: updatedUser });
+      // If a file is uploaded, update the profile picture
+      if (req.file) {
+        const profilePicture = req.file.buffer; // Assuming the profile picture is stored as a binary buffer
+        await User.update(
+          {
+            profilePicture,
+          },
+          {
+            where: {
+              id: userId,
+            },
+          }
+        );
+      }
+
+      // Fetch the updated user details
+      const updatedUser = await User.findByPk(userId);
+
+      // Send the updated user details in the response
+      res.status(200).json({ user: updatedUser });
+    });
   } catch (error) {
     console.error("Error editing user:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while editing the user." });
+    res.status(500).json({ error: "An error occurred while editing the user." });
   }
 };
 
