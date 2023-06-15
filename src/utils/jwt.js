@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv').config({ path: '../.env' });
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv").config({ path: "../.env" });
 
 // Generate a JWT token
 const generateToken = (payload, expiresIn) => {

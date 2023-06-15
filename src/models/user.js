@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
     alternateEmail: DataTypes.STRING,
-    profilePicture: DataTypes.BLOB('long') // Change the data type to BLOB('long')
+    profilePicture: DataTypes.BLOB('long') // Changed the data type to BLOB('long')
   }, {
     sequelize,
     modelName: 'User',
