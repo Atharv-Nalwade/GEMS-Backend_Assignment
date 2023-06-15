@@ -39,8 +39,10 @@ JWT_SECRET=sometextwithoutquotes
 - HTTP Method: POST
 - Endpoint: `http://localhost:3000/api/v1/login`
 - Send the form-data in the request body with the following keys and values:
+```
 - `email` (text): john.doe@example.com
 - `password` (text): john123
+```
 - Note: Make sure to use the password provided during the signup API.
 - Passwords are compared with the hashed password stored in the database.
 - The API creates the user and returns the user in the API's response.
@@ -64,10 +66,12 @@ All private endpoints first pass through the authentication middleware, where th
 - HTTP Method: POST
 - Endpoint: `http://localhost:3000/api/v1/invitation`
 - The request body should have the following key-value pairs:
+```
 - `name` (text): "Shreerup"
 - `email` (text): "shree@gmail.com"
 - `phone` (text): "123456789"
 - `alternateEmail` (text): "shree1@gmail.com"
+```
 - Note: You can enter any values; they represent the person to be invited.
 - The API performs input validation by checking if the required fields (`name`, `email`, and `phone`) are present. If any of these fields are missing, it returns a 400 Bad Request response with an error message.
 - It generates a unique invitee ID using the `uuidv4` function from the "uuid" module. This ID will be used to identify the invitation.
@@ -79,11 +83,13 @@ All private endpoints first pass through the authentication middleware, where th
 - HTTP Method: PUT
 - Endpoint: `http://localhost:3000/api/v1/editUser`
 - The request body should have the following key-value pairs:
+```
 - `name` (text): "Shreerup"
 - `email` (text): "shree@gmail.com"
 - `phone` (text): "123456789"
 - `alternateEmail` (text): "shree1@gmail.com"
 - `profilePicture` (file): Select a file from your file system
+```
 - The function requires the User model file and the multer middleware for handling file uploads.
 - It configures multer with `memoryStorage`, which means uploaded files are stored as Buffer objects in memory.
 - The function extracts the ID of the user from the `req.user.dataValues` object. This assumes that the `req.user` object contains the authenticated user's information.
