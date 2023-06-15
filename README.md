@@ -2,7 +2,8 @@
 
 ## IEEE Gems Web Domain (Backend) Selection Assignment
 
-This assignment focuses on the backend development of the IEEE Gems web domain. The task details are provided in the 'Backend Task.pdf' file. 
+This assignment focuses on the backend development of the IEEE Gems web domain. The task details are provided in the 'Backend Task.pdf' file.
+--- 
 
 To set up the project, follow these steps:
 
@@ -23,6 +24,7 @@ JWT_SECRET=sometextwithoutquotes
 9. Then considering you are in the root directory execute `cd src` followed by `node index.js` to run teh file and teh server would be started
 
 ## Packages Used
+---
 
 The following packages are used in this project:
 
@@ -39,6 +41,7 @@ The following packages are used in this project:
 These packages provide various functionalities such as user authentication, data storage and retrieval, file handling, and more.
 
 ## Database Schema
+---
 
 The project uses a relational database to store and manage data. The schema consists of several tables that represent different entities in the system.
 
@@ -97,7 +100,8 @@ These tables and their columns define the structure of the project's database sc
 
 Note: The actual table names in the database may be different from the model names specified in the code. Sequelize provides options to customize the table names, but the default behavior is to pluralize the model names to derive the table names.
 
-
+## API's
+---
 
 ### Signup API
 
