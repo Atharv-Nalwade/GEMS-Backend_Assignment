@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "atharv15",
+    "username": "<Your_SQL_UserName> Usually root",  
+    "password": "<Your_SQL_DB_Password>",
     "database": "GemsAssignment",
     "host": "127.0.0.1",
     "dialect": "mysql"
